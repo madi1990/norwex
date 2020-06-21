@@ -70,12 +70,12 @@ class populateData extends Command
         }
         $this->echoLog('Populated Customer table');
         for($j = 1;$j <= 200;$j++){
-            $customerId = rand(1, 20);
+            $customerId = rand(1, 18);
             $status = $orderStatus[array_rand($orderStatus)];
             $order = new Order();
             $order->CustomerId = $customerId;
             $order->OrderStatus = $status;
-            $order->OrderTotal = mt_rand(1 * 100, 500 * 100) / 100;
+            $order->OrderTotal = mt_rand(1 * 100, 50 * 100) / 100;
             $order->save();
         }
         $this->echoLog('All done');

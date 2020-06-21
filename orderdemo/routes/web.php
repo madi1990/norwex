@@ -14,3 +14,5 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', 'PageController@display');
+
+Route::post('/{dataset}/data', 'DataTableController@getData');
