@@ -1,0 +1,11 @@
+tr.red, tr.red > td{
+    background-color: red !important;
+}
+
+tr.orange, tr.orange > td{
+    background-color: orange !important;
+}
+
+tr.green, tr.green > td{
+    background-color: green !important;
+}

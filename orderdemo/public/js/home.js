@@ -1,5 +1,5 @@
 $(function(){
-    $('#orderOverview').DataTable( {
+    var orderTable = $('#orderOverview').DataTable( {
         dom: "Btrip",
         pageLength: 10,
         ajax: {
@@ -46,5 +46,23 @@ $(function(){
                 }
             },
         ],
+        rowCallback: function (row, data) {
+            console.log(data);
+            for(var i = 0;i < data.CustomerStatus.length;i++){
+                if(data.Customer.CustomerStatusId === data.CustomerStatus[i].CustomerStatusId){
+                    if(data.CustomerStatus[i].Code == 'RE'){
+                        $(row).addClass('red');
+                    }
+                }
+            }
+            if($.inArray(data.Customer.CustomerId.toString(), Object.keys(data.orangeData)) !== -1){
+                $(row).addClass('orange');
+            }
+            if($.inArray(data.Customer.CustomerId.toString(), Object.keys(data.greenData)) !== -1){
+                if(data.greenData[data.Customer.CustomerId].sum >= 200) $(row).addClass('green');
+            }
+        }
     });
+
+    
 });

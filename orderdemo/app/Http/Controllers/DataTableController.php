@@ -64,7 +64,7 @@ class DataTableController extends Controller
                 LEFT JOIN `Order` o ON c.CustomerId = o.CustomerId
 				WHERE o.CreatedDateTime >= '". $threeMonthsAgo ."'
                 AND cs.Code = 'AC' 
-                GROUP BY o.CustomerId having sum(o.OrderTotal) >= 200;";
+                GROUP BY o.CustomerId;";
             $queryData = DB::select($greenQuery);
             foreach($queryData as $element){
                 $greenData[$element->CustomerId] = $element;
