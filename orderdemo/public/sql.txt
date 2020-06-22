@@ -1,0 +1,32 @@
+create database orderdemo;
+
+use orderdemo;
+
+CREATE TABLE IF NOT EXISTS `Customer` (
+  `CustomerId` int unsigned NOT NULL AUTO_INCREMENT,
+  `CustomerStatusId` int unsigned DEFAULT '0',
+  `Name` varchar(30) NOT NULL,
+  `AddedTime` datetime DEFAULT now(),
+  `UpdatedTime` datetime DEFAULT now(),
+  PRIMARY KEY (`CustomerId`),
+  INDEX Customer_Name (`Name`)
+) ENGINE=InnoDB AUTO_INCREMENT=1;
+
+CREATE TABLE IF NOT EXISTS `CustomerStatus` (
+  `CustomerStatusId` int unsigned NOT NULL AUTO_INCREMENT,
+  `Code` varchar(5) NOT NULL,
+  `Name` varchar(30) NOT NULL,
+  PRIMARY KEY (`CustomerStatusId`),
+  INDEX CustomerStatus_Code (`Code`)
+) ENGINE=InnoDB AUTO_INCREMENT=1;
+
+CREATE TABLE IF NOT EXISTS `Order` (
+  `OrderId` int unsigned NOT NULL AUTO_INCREMENT,
+  `CustomerId` int unsigned NOT NULL,
+  `OrderStatus` varchar(20) NOT NULL,
+  `OrderTotal` decimal(12, 2) NOT NULL,
+  `CreatedDateTime` datetime DEFAULT now(),
+  `UpdatedDateTime` datetime DEFAULT now(),
+  PRIMARY KEY (`OrderId`),
+  INDEX Order_ID_Status (`CustomerId`, `OrderStatus`)
+) ENGINE=InnoDB AUTO_INCREMENT=1;
